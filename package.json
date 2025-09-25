@@ -72,6 +72,9 @@
     "vagrant": "cd vagrant && vagrant up",
     "sbom": "npm run sbom:json && npm run sbom:xml",
     "sbom:json": "cyclonedx-npm --omit=dev --output-format=JSON --output-file=bom.json",
+    "test:student": "jest --coverage --verbose",
+    "lint:student": "eslint . --ext .js,.ts",
+    "student:all": "npm run lint:student && npm run test:student",
     "sbom:xml": " cyclonedx-npm --omit=dev --output-format=XML  --output-file=bom.xml"
   },
   "jest": {
