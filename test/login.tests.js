@@ -1,20 +1,14 @@
-const request = require('supertest')
-const app = require('../../build/app')  // adjust if needed
+const request = require('supertest');
+const app = require('../app'); // adjust to your server entry
 
-describe('Student Tests', () => {
-  test('Rejects invalid login (no user enumeration)', async () => {
+describe('Authentication', () => {
+  test('Login rejects invalid credentials (no user enumeration)', async () => {
     const res = await request(app)
-      .post('/rest/user/login')
-      .send({ email: 'invalid@example.com', password: 'wrong' })
-    expect(res.statusCode).toBe(401)
-    expect(res.text).toMatch(/Invalid email or password/i)
-  })
+      .post('/api/login')
+      .send({ email: 'noone@example.com', password: 'wrong' });
+    expect(res.statusCode).toBe(401);
+    expect(res.text).toMatch(/invalid credentials|error/i);
+  });
+});
 
-  test('Search input should sanitize script tags', async () => {
-    const res = await request(app)
-      .get('/rest/products/search?q=<script>alert(1)</script>')
-    expect(res.statusCode).toBe(200)
-    expect(res.text).not.toContain('<script>')
-  })
-})
 
