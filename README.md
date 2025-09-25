@@ -1,3 +1,6 @@
-npm install --save-dev eslint
-npx eslint . --ext .js,.jsx
-professor make sure to run these commands to be able to run npm test
+-  to Run with Docker
+docker run --rm -p 3000:3000 bkimminich/juice-shop
+
+-  Run tests
+npm install
+npm test
